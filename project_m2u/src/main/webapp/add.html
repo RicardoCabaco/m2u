@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html ng-app="myapp">
+<head>
+<meta charset="ISO-8859-1">
+<title>Insert title here</title>
+<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.6/angular.min.js"></script>
+</head>
+<body>
+
+<div ng-controller="studentController">
+	<form name="add" ng-submit="addP();">
+    <table border="0">
+        <tr>
+            <td>Enter name</td>
+            <td><input type="text" ng-model="product.name"></td>
+        </tr>
+        
+        <tr>
+            <td>Enter description:</td>
+            <td><input type="text" ng-model="product.description"></td>
+        </tr>
+         <tr>
+            <td colspan="2"><input type="submit" value="submit"></td>
+        </tr>
+        
+    </table>
+    </form>
+</div>
+
+
+
+<script type="text/javascript">
+
+	var myapp = angular.module('myapp',[]);
+	
+	myapp.controller('studentController',function($scope,$http){
+		
+		$scope.addP = function(){
+			$http.post('http://localhost:8080/demos/resources/products',$scope.product).success(function(response){
+				alert(response.status);
+			});
+			
+		}
+		
+		
+	});
+
+</script>
+
+</body>
+</html>
